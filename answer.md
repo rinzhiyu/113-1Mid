@@ -1,12 +1,12 @@
 # 期中考
 >
->學號：1234567
+>學號：112111225
 ><br />
->姓名：王小明
+>姓名：林芷羽
 ><br />
 >作業撰寫時間：180 (mins，包含程式撰寫時間)
 ><br />
->最後撰寫文件日期：2023/09/22
+>最後撰寫文件日期：2024/11/4
 >
 
 本份文件包含以下主題：(至少需下面兩項，若是有多者可以自行新增)
@@ -56,20 +56,65 @@ a. 小題
 
 Ans
 
+```py
+map = [[0]*10 for _ in range(10)]
+```
+
 b. 小題
 
 Ans
 
+```py
+rowMap = [0]*10
+```
+
 c. 小題
 
 Ans
+
+```py
+rowMap = [0, 7, 13, 28, 44, 62, 74, 75, 87, 90]
+```
 
 
 d. 小題
 
 Ans
 
+```py
+def bombs(map):
+    rows = len(map)
+    cols = len(map[0]) 
+    bombMap = [[" " for _ in range(cols)] for _ in range(rows)] 
+
+    for r in range(rows):
+        for c in range(cols):
+            if map[r][c] == "*":
+                bombMap[r][c] = "*"  # 如果是炸彈則顯示 *
+```
+
 
 e. 小題
 
 Ans
+
+```py
+            else:
+                # 計算周圍炸彈數量
+                bombCount = 0
+                for i in range(r - 1, r + 2):
+                    for j in range(c - 1, c + 2):
+                        if 0 <= i < rows and 0 <= j < cols:
+                            if map[i][j] == "*":
+                                bombCount += 1
+                                if bombCount > 0:
+                                    bombMap[r][c] = str(bombCount)
+                                else:
+                                    bombMap[r][c] = " "  # 空白顯示
+
+    return bombMap
+
+result_map = bombs(map)
+for row in result_map:
+    print(" ".join(row))
+```
